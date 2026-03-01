@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "studentId": 2,
+    "book": "Physics",
+    "issueDate": "2026-02-01",
+    "return": "No"
+  },
+  {
+    "id": 2,
+    "studentId": 3,
+    "book": "English Grammar",
+    "issueDate": "2026-02-03",
+    "return": "Yes"
+  },
+  {
+    "id": 3,
+    "studentId": 2,
+    "book": "Chemistry",
+    "issueDate": "2026-02-05",
+    "return": "No"
+  },
+  {
+    "id": 4,
+    "studentId": 4,
+    "book": "Industrial Managerial ",
+    "issueDate": "2026-01-05",
+    "return": "Yes"
+  },
+  {
+    "id": 5,
+    "studentId": 3,
+    "book": "Mathematics",
+    "issueDate": "2026-02-06",
+    "return": "Yes"
+  },
+  {
+    "id": 6,
+    "studentId": 4,
+    "book": "ICT",
+    "issueDate": "2026-02-07",
+    "return": "No"
+  }
+]

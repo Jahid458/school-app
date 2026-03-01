@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Teacher Karim",
+    "email": "teacher1@gmail.com",
+    "subject": "Math",
+    "department": "Science",
+    "phone": "01700000002"
+  },
+  {
+    "id": 2,
+    "name": "Teacher Hasan",
+    "email": "teacher2@gmail.com",
+    "subject": "English",
+    "department": "Language",
+    "phone": "01700000003"
+  }
+]

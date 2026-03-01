@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "name": "Admin Rahman",
+    "email": "admin@gmail.com",
+    "role": "admin",
+    "phone": "01700000001"
+  },
+  {
+    "id": 2,
+    "name": "Student Araf",
+    "email": "student1@gmail.com",
+    "role": "student",
+    "class": "10A",
+    "phone": "01700000004"
+  },
+  {
+    "id": 3,
+    "name": "Student Nabil",
+    "email": "student2@gmail.com",
+    "role": "student",
+    "class": "9B",
+    "phone": "01700000005"
+  },
+  {
+    "id": 4,
+    "name": "Student Ria",
+    "email": "student3@gmail.com",
+    "role": "student",
+    "class": "10B",
+    "phone": "01700000006"
+  },
+  {
+    "id": 5,
+    "name": "Teacher Karim",
+    "email": "teacher1@gmail.com",
+    "role": "teacher",
+    "subject": "Math",
+    "department": "Science",
+    "phone": "01700000002"
+  },
+  {
+    "id": 6,
+    "name": "Teacher Hasan",
+    "email": "teacher2@gmail.com",
+    "role": "teacher",
+    "subject": "English",
+    "department": "Language",
+    "phone": "01700000003"
+  }
+]
