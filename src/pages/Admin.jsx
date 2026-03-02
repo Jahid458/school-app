@@ -33,7 +33,7 @@ const Admin = () => {
     { key: "users", label: " All Users" },
     { key: "classes", label: "Class List " },
     { key: "assignments", label: "Assignment Lists" },
-    { key: "libary", label: "Libary Lists" },
+    { key: "libary", label: "Libary Lists" }
   ];
   return (
     <div className="p-6 max-w-4xl mx-auto">

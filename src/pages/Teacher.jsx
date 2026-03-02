@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useAppContext } from "../context/useAppContext";
 
 const Teacher = () => {
@@ -7,6 +7,12 @@ const Teacher = () => {
   const [studentId, setStudentId] = useState("");
   const [deadline, setDeadline] = useState("");
 
+
+  const titleRef = useRef(null);
+  const studentSelectRef = useRef(null);
+  const deadLineRef = useRef(null);
+  const addBtnRef = useRef(null);
+
   const teacherId = 1;
   const teacherName = "Teacher Karim";
 
@@ -14,8 +20,11 @@ const Teacher = () => {
     (singleStdnt) => singleStdnt.role === "student",
   );
 
-  const handleAddAssignment = () => {
-    console.log("Assignment click");
+  const handleAddAssignment = useCallback(() => {
+    if (!title || !studentId || !deadline) {
+      alert("Please Required the Field!!");
+      return;
+    }
 
     const newAssignmentLoad = {
       id: assignement.length + 1,
@@ -30,28 +39,34 @@ const Teacher = () => {
     setTitle("");
     setStudentId("");
     setDeadline("");
-  };
+
+    titleRef.current.focus();
+
+    console.log(titleRef);
+  }, [assignement, title, setAssignments, deadline, studentId]);
 
   const myAssignments = assignement.filter(
     (ass) => ass.teacherId === teacherId,
   );
 
   const submittedCountList = myAssignments.filter(
-    (studentAssignment) => studentAssignment.status === "submitted").length;
+    (studentAssignment) => studentAssignment.status === "submitted",
+  ).length;
   const pendingCountList = myAssignments.filter(
-    (studentAssignment) => studentAssignment.status === "pending").length;
+    (studentAssignment) => studentAssignment.status === "pending",
+  ).length;
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-center">Teacher Dashboard</h1>
+      <h1 className="text-2xl  font-bold text-center">Teacher Dashboard</h1>
 
       <p className="text-center mt-2">Logged In As Teacher: {teacherName}</p>
 
       <div className="flex spcace-x-3 mt-5 justify-center space-x-5">
-        <div className="border bg-amber-600 text-white text-center text-2xl rounded-xl p-6">
+        <div className="border bg-amber-600 text-white text-center text-2xl rounded-xl p-2">
           <p>Submitted Count: {submittedCountList} </p>
         </div>
-        <div className="border bg-gray-600 text-white text-2xl text-center rounded-xl p-6">
+        <div className="border bg-gray-600 text-white text-2xl text-center rounded-xl p-2">
           <p>Pending Count: {pendingCountList}</p>
         </div>
       </div>
@@ -68,10 +83,16 @@ const Teacher = () => {
             </label>
             <input
               type="text"
+              ref={titleRef}
               placeholder="Enter assignment title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               className="input input-bordered w-full"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  studentSelectRef.current.focus();
+                }
+              }}
             />
           </div>
 
@@ -80,9 +101,15 @@ const Teacher = () => {
               <span className="label-text">Select Student</span>
             </label>
             <select
+              ref={studentSelectRef}
               value={studentId}
               onChange={(e) => setStudentId(e.target.value)}
               className="select w-full"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  deadLineRef.current.focus();
+                }
+              }}
             >
               <option value="">Choose a student</option>
               {students.map((s) => (
@@ -98,15 +125,25 @@ const Teacher = () => {
               <span className="label-text">Deadline</span>
             </label>
             <input
+              ref={deadLineRef}
               type="date"
               value={deadline}
               onChange={(e) => setDeadline(e.target.value)}
               className="input input-bordered w-full"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  addBtnRef.current.focus();
+                }
+              }}
             />
           </div>
 
           <div className="form-control mt-4 text-center">
-            <button onClick={handleAddAssignment} className="btn">
+            <button
+              ref={addBtnRef}
+              onClick={handleAddAssignment}
+              className="btn"
+            >
               Add Assignment For Students
             </button>
           </div>
@@ -131,7 +168,6 @@ const Teacher = () => {
           <tbody>
             {myAssignments.map((a) => {
               const student = students.find((s) => s.id === a.studentId);
-
               return (
                 <tr key={a.id}>
                   <td>{a.title}</td>
@@ -139,11 +175,13 @@ const Teacher = () => {
                   <td>{student ? student.class : "N/A"}</td>
                   <td>{a.deadline}</td>
                   <td>
-                    {a.submissionLink ? a.submissionLink : 'Not Submit Yet'}
+                    {a.submissionLink ? a.submissionLink : "Not Submit Yet"}
                   </td>
 
                   <td>
-                    <span className={`badge ${  a.status === "submitted" ? "badge-success": "badge-error" }`} >
+                    <span
+                      className={`badge ${a.status === "submitted" ? "badge-success" : "badge-error"}`}
+                    >
                       {a.status}
                     </span>
                   </td>

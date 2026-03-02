@@ -17,13 +17,7 @@ const Student = () => {
     }
     setAssignments(
       assignement.map((as) =>
-        as.id === id
-          ? {
-              ...as,
-              status: "submitted",
-              submissionLink: links,
-            }
-          : as,
+        as.id === id ? {  ...as,status: "submitted", submissionLink: links }  : as,
       ),
     );
   };
@@ -47,7 +41,7 @@ const Student = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <p className="text-center text-2xl ">Student DashBoard</p>
+      <p className="text-2xl  font-bold text-center">Student DashBoard</p>
       <p className="text-center text-xl mt-5 mb-3">userName: {studentname}</p>
 
       <div className="flex spcace-x-3 mt-5 justify-center space-x-5">
