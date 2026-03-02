@@ -4,18 +4,18 @@ import { useAppContext } from "../context/useAppContext";
 const Admin = () => {
   const { users, teachers, assignement, libary } = useAppContext();
 
-  // console.log(libary);
+
 
   const [activeTab, setActiveTab] = useState("users");
 
   const students = users.filter((su) => su.role === "student");
 
-  // console.log(students)
+
 
   const getUserById = (id) => users.find((user) => user.id == id);
   const getTeacherById = (id) => teachers.find((teacher) => teacher.id == id);
 
-  // console.log(getTeacherById, getUserById)
+
 
   const classSections = {};
 
@@ -51,13 +51,13 @@ const Admin = () => {
 
         {activeTab === "users" && (
           <div>
-            <h2 className="text-xl text-black text-center mt-3">
+            <h2 className="text-xl text-gray text-center mt-3">
               All Users List
             </h2>
             <div className="overflow-x-auto">
-              <table className="table">
-                <thead>
-                  <tr>
+              <table className="table ">
+                <thead  className="bg-gray-200 dark:bg-gray-800 text-black dark:text-white">
+                  <tr >
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>

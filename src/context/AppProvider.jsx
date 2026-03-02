@@ -7,6 +7,21 @@ const AppProvider = ({ children }) => {
   const [assignement, setAssignments] = useState([]);
   const [libary, setLibary] = useState([]);
 
+  const [theme,setTheme] = useState('light');
+
+  const toggoleTheme = () =>{
+    setTheme(prev => prev === 'light' ? 'dark' : 'light')
+  }
+
+  useEffect(() => {
+    if(theme === 'dark'){
+        document.documentElement.classList.add("dark");
+    }else{
+        document.documentElement.classList.remove("dark");
+
+    }
+  }, [theme])
+
   useEffect(() => {
     fetch("/users.json")
       .then((res) => res.json())
@@ -28,7 +43,7 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ users, teachers, setAssignments, assignement, libary }}
+      value={{ users, teachers, setAssignments, assignement, libary, theme, toggoleTheme }}
     >
       {children}
     </AppContext.Provider>

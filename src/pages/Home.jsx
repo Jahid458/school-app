@@ -25,8 +25,6 @@ const Home = () => {
   
   ];
 
-
-
   return (
     <div className="p-8 max-w-4xl mx-auto">
       <h1 className="text-center">Welome to the Student Management App</h1>
