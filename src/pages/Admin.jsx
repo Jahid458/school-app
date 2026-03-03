@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useAppContext } from "../context/useAppContext";
+import AddUser from "../Components/AddUser/AddUser";
 
 const Admin = () => {
   const { users, teachers, assignement, libary } = useAppContext();
-
-
 
   const [activeTab, setActiveTab] = useState("users");
 
@@ -54,9 +53,10 @@ const Admin = () => {
             <h2 className="text-xl text-gray text-center mt-3">
               All Users List
             </h2>
-            <div className="overflow-x-auto">
+              <AddUser/>
+            <div className="overflow-x-auto ">
               <table className="table ">
-                <thead  className="bg-gray-200 dark:bg-gray-800 text-black dark:text-white">
+                <thead  className="bg-gray-200 text-center dark:bg-gray-800 text-black dark:text-white">
                   <tr >
                     <th>Id</th>
                     <th>Name</th>
@@ -66,9 +66,11 @@ const Admin = () => {
                     <th>Class / Subject</th>
                   </tr>
                 </thead>
+
+              
                 <tbody>
                   {users.map((singleUser) => (
-                    <tr key={singleUser.id}>
+                    <tr key={singleUser.id} className="text-center">
                       <th>{singleUser.id}</th>
                       <td>{singleUser.name}</td>
                       <td>{singleUser.email}</td>

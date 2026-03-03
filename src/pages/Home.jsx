@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
 const Home = () => {
-
-
   const roleList = [
     {
       tittle: "Admin",
@@ -22,7 +20,6 @@ const Home = () => {
       color: "bg-blue-100 border-blue-400",
       desc: "View All Users List",
     },
-  
   ];
 
   return (
@@ -34,8 +31,12 @@ const Home = () => {
       >
         {roleList.map((role) => (
           <Link to={role.path} key={role.tittle}>
-            <div className={`border-2 rounded-xl p-6 ${role.color} hover:shadow-lg transition cursor-pointer`}>
-              <h2 className="text-xl font-bold mb-2 text-center">{role.tittle}</h2>
+            <div
+              className={`border-2 rounded-xl p-6 ${role.color} hover:shadow-lg transition cursor-pointer`}
+            >
+              <h2 className="text-xl font-bold mb-2 text-center">
+                {role.tittle}
+              </h2>
               <p className="text-sm text-gray-600 text-center">{role.desc}</p>
             </div>
           </Link>

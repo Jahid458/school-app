@@ -2,22 +2,24 @@ import { useState } from "react";
 import { useAppContext } from "../context/useAppContext";
 
 const Student = () => {
-  const { setAssignments, assignement, libary } = useAppContext();
+  const { setAssignments, assignement, libary, users } = useAppContext();
   const [submissionLink, setSubmissonLink] = useState({});
   const [activeTab, setActiveTab] = useState("assignments");
+  const [selectStudentId, setSelectStudentId] = useState("");
 
-  const customStudentId = 2;
-  const studentname = "Student Araf";
+  const selectedStudent = users.find((u) => u.id === parseInt(selectStudentId));
 
   const handleSubmit = (id) => {
     const links = submissionLink[id];
     if (!links || links.trim() === "") {
-      alert("Please Submit Links");
+      alert("Please Submit Links")
       return;
     }
     setAssignments(
       assignement.map((as) =>
-        as.id === id ? {  ...as,status: "submitted", submissionLink: links }  : as,
+        as.id === id
+          ? { ...as, status: "submitted", submissionLink: links }
+          : as,
       ),
     );
   };
@@ -27,7 +29,7 @@ const Student = () => {
   };
 
   const myAssignmentList = assignement.filter(
-    (ass) => ass.studentId == customStudentId,
+    (ass) => ass.studentId == parseInt(selectStudentId),
   );
 
   const submittedCountList = myAssignmentList.filter(
@@ -35,14 +37,32 @@ const Student = () => {
   ).length;
 
   const myBookList = libary.filter(
-    (book) => book.studentId === customStudentId,
+    (book) => book.studentId === parseInt(selectStudentId),
   );
   const retunList = myBookList.filter((rt) => rt.return === "Yes").length;
 
   return (
     <div className="max-w-4xl mx-auto">
-      <p className="text-2xl  font-bold text-center">Student DashBoard</p>
-      <p className="text-center text-xl mt-5 mb-3">userName: {studentname}</p>
+      <p className="text-2xl  font-bold text-center mb-5">Student DashBoard</p>
+
+      <div className="flex justify-center items-center mb-4">
+        <select
+          className="w-2/5 mb-5 text-center"
+          value={selectStudentId}
+          onChange={(e) => setSelectStudentId(e.target.value)}
+        >
+          <option>Select Student</option>
+          {users
+            .filter((u) => u.role === "student")
+            .map((stu) => (
+              <option key={stu.id} value={stu.id}>{stu.name}</option>
+            ))}
+        </select>
+      </div>
+
+      <p className="text-center text-2xl text-gray-500 border mb-5 p-3">
+        Name: {selectedStudent?.name} || StudentId: {selectedStudent?.id}
+      </p>
 
       <div className="flex spcace-x-3 mt-5 justify-center space-x-5">
         <div className="border bg-sky-800 text-white text-center text-2xl rounded-xl p-2">
@@ -61,9 +81,7 @@ const Student = () => {
               ? "bg-amber-800 text-white"
               : "bg-amber-100"
           }`}
-        >
-          My Assignments List
-        </button>
+        >My Assignments List</button>
         <button
           onClick={() => setActiveTab("libary")}
           className={`px-2 py-3 rounded-md  ${
@@ -93,7 +111,8 @@ const Student = () => {
                   <td className="border px-3 py-2">{assign.deadline}</td>
                   <td className="border px-3 py-2">
                     <span
-                      className={`px-2 py-1 rounded-xl bg-amber-500 text-black text-md font-semibold ${assign.status === "submitted" ? " text-green-700" : " text-white"}`}
+                      className={`px-2 py-1 rounded-xl bg-amber-500 text-black text-md font-semibold 
+                        ${assign.status === "submitted" ? " text-green-700" : " text-white"}`}
                     >
                       {assign.status}
                     </span>
@@ -102,6 +121,7 @@ const Student = () => {
                     <input
                       type="text"
                       placeholder="Submit your Links"
+                      disabled={assign.status === "submitted"}
                       className="input w-full"
                       onChange={(e) =>
                         handleInputChange(assign.id, e.target.value)
@@ -131,10 +151,7 @@ const Student = () => {
         <div>
           <div className="overflow-x-auto">
             <h1 className="text-center mt-3 p-4">My BookList Information</h1>
-            <p className="text-center text-2xl text-gray-500 border mb-5 p-3">
-              Name: {studentname}
-              || StudentId: {customStudentId}
-            </p>
+
             <table className="table text-center">
               <thead>
                 <tr>

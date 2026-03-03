@@ -7,7 +7,6 @@ const Teacher = () => {
   const [studentId, setStudentId] = useState("");
   const [deadline, setDeadline] = useState("");
 
-
   const titleRef = useRef(null);
   const studentSelectRef = useRef(null);
   const deadLineRef = useRef(null);
@@ -52,6 +51,7 @@ const Teacher = () => {
   const submittedCountList = myAssignments.filter(
     (studentAssignment) => studentAssignment.status === "submitted",
   ).length;
+
   const pendingCountList = myAssignments.filter(
     (studentAssignment) => studentAssignment.status === "pending",
   ).length;
