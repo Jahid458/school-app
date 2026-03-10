@@ -47,13 +47,13 @@ const Student = () => {
 
       <div className="flex justify-center items-center mb-4">
         <select
+          id="student-select"
           className="w-2/5 mb-5 text-center"
           value={selectStudentId}
           onChange={(e) => setSelectStudentId(e.target.value)}
         >
           <option>Select Student</option>
-          {users
-            .filter((u) => u.role === "student")
+          {users.filter((u) => u.role === "student")
             .map((stu) => (
               <option key={stu.id} value={stu.id}>{stu.name}</option>
             ))}
@@ -111,15 +111,17 @@ const Student = () => {
                   <td className="border px-3 py-2">{assign.deadline}</td>
                   <td className="border px-3 py-2">
                     <span
+                    id={`status-${assign.id}`}
                       className={`px-2 py-1 rounded-xl bg-amber-500 text-black text-md font-semibold 
                         ${assign.status === "submitted" ? " text-green-700" : " text-white"}`}
                     >
-                      {assign.status}
+                      {assign.status} 
                     </span>
                   </td>
                   <td className="border px-3 py-2">
                     <input
                       type="text"
+                      id={`submission-input-${assign.id}`}
                       placeholder="Submit your Links"
                       disabled={assign.status === "submitted"}
                       className="input w-full"
@@ -131,6 +133,7 @@ const Student = () => {
                   <td className="border px-3 py-2">
                     {assign.status === "pending" ? (
                       <button
+                        id={`submit-btn-${assign.id}`}
                         onClick={() => handleSubmit(assign.id)}
                         className="btn bg-green-800  text-white px-3 py-1 font-semibold"
                       >

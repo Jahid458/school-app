@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useAppContext } from "../context/useAppContext";
-import AddUser from "../Components/AddUser/AddUser";
 
 const Admin = () => {
   const { users, teachers, assignement, libary } = useAppContext();
@@ -34,14 +33,17 @@ const Admin = () => {
     { key: "assignments", label: "Assignment Lists" },
     { key: "libary", label: "Libary Lists" }
   ];
+
+
+
+  
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl  font-bold text-center">Admin dashboard</h1>
 
       <div className="flex space-x-3 mb-6 flex-wrap justify-center mt-5 gap-2">
         {tabs.map((tab) => (
-          <button
-            className={`px-4 py-2 rounded-full font-medium ${activeTab == tab.key ? "text-green-800" : "text-black-100"}`}
+          <button className={`px-4 py-2 rounded-full font-medium ${activeTab == tab.key ? "text-green-800" : "text-black-100"}`}
             onClick={() => setActiveTab(tab.key)}
           >
             {tab.label}
@@ -53,7 +55,7 @@ const Admin = () => {
             <h2 className="text-xl text-gray text-center mt-3">
               All Users List
             </h2>
-              <AddUser/>
+             
             <div className="overflow-x-auto ">
               <table className="table ">
                 <thead  className="bg-gray-200 text-center dark:bg-gray-800 text-black dark:text-white">
@@ -95,7 +97,7 @@ const Admin = () => {
 
         {activeTab === "classes" && (
           <div>
-            <h2 className="text-xl text-center font-semibold mb-3">
+            <h2 className="text-xl   text-center font-semibold mb-3">
               Students by Class Section
             </h2>
             {Object.entries(classSections).map(([cls, studs]) => {
@@ -108,8 +110,8 @@ const Admin = () => {
                   <div className="overflow-x-auto">
                     <table className="w-full border text-sm">
                       <thead className="bg-sky-50">
-                        <tr>
-                          <th className="border px-3 py-2 text-left">Name</th>
+                        <tr className="">
+                          <th className="border px-3 py-2 text-left ">Name</th>
                           <th className="border px-3 py-2 text-left">Email</th>
                           <th className="border px-3 py-2 text-left">Phone</th>
                         </tr>
@@ -147,7 +149,7 @@ const Admin = () => {
             </h2>
             <div className="overflow-x-auto">
               <table className="w-full border text-sm">
-                <thead className="bg-sky-100">
+                <thead className="bg-sky-100 "  >
                   <tr>
                     <th className="border px-3 py-2 text-left">Title</th>
                     <th className="border px-3 py-2 text-left">Given By</th>
@@ -161,7 +163,7 @@ const Admin = () => {
                     const teachers = getTeacherById(ass.id);
                     const students = getUserById(ass.studentId);
                     return (
-                      <tr key={ass.id} className="hover:bg-gray-50">
+                      <tr key={ass.id} className="hover:bg-gray-50 ">
                         <td className="border px-3 py-2">{ass.title}</td>
                         <td className="border px-3 py-2">
                           {teachers

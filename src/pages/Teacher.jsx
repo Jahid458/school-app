@@ -82,6 +82,7 @@ const Teacher = () => {
               <span className="label-text">Assignment Title</span>
             </label>
             <input
+              id="assignment-title"
               type="text"
               ref={titleRef}
               placeholder="Enter assignment title"
@@ -101,6 +102,7 @@ const Teacher = () => {
               <span className="label-text">Select Student</span>
             </label>
             <select
+              id="student-select"
               ref={studentSelectRef}
               value={studentId}
               onChange={(e) => setStudentId(e.target.value)}
@@ -125,6 +127,7 @@ const Teacher = () => {
               <span className="label-text">Deadline</span>
             </label>
             <input
+              id="deadline-input"
               ref={deadLineRef}
               type="date"
               value={deadline}
@@ -140,6 +143,7 @@ const Teacher = () => {
 
           <div className="form-control mt-4 text-center">
             <button
+                id="add-assignment-btn"
               ref={addBtnRef}
               onClick={handleAddAssignment}
               className="btn"

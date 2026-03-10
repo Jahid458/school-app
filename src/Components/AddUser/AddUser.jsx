@@ -1,8 +1,6 @@
 
 
 const AddUser = () => {
-
-
   return (
     <div>
       <div className="border p-4 mb-6 mt-5 bg-gray-50 space-y-5 ">
